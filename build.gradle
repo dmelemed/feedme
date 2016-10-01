@@ -111,6 +111,9 @@ dependencies {
         exclude(module: 'metrics-core')
         exclude(module: 'metrics-healthchecks')
     }
+    compile("net.logstash.logback:logstash-logback-encoder:${logstash_logback_encoder_version}") {
+        exclude(module: 'ch.qos.logback')
+    }
     compile "com.fasterxml.jackson.datatype:jackson-datatype-json-org:${jackson_version}"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-hppc:${jackson_version}"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jackson_version}"
@@ -162,8 +165,8 @@ dependencies {
     compile "org.apache.geronimo.javamail:geronimo-javamail_1.4_mail:${geronimo_javamail_1_4_mail_version}"
     compile "fr.ippon.spark.metrics:metrics-spark-reporter:${metrics_spark_reporter_version}"
 
+    compile "org.postgresql:postgresql"
     compile "com.h2database:h2"
-
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 clean {

@@ -1,0 +1,12 @@
+version: '2'
+services:
+    feedme-postgresql:
+        container_name: feedme-postgresql
+        image: postgres:9.5.4
+        # volumes:
+        #     - ~/volumes/jhipster/feedme/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=feedme
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432
