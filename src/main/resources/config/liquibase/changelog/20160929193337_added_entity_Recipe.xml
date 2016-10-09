@@ -37,7 +37,7 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="source" type="varchar(255)">
+            <column name="src" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
             

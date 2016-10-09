@@ -23,13 +23,12 @@ spring:
 #        name:
 #        username: feedme
 #        password:
-    spring:
-        datasource:
-            type: com.zaxxer.hikari.HikariDataSource
-            maximumPoolSize: 10
-            url: ${JDBC_DATABASE_URL}
-            username: ${JDBC_DATABASE_USERNAME}
-            password: ${JDBC_DATABASE_PASSWORD}
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        maximumPoolSize: 10
+        url: ${JDBC_DATABASE_URL}
+        username: ${JDBC_DATABASE_USERNAME}
+        password: ${JDBC_DATABASE_PASSWORD}
 
     jpa:
         database-platform: com.feedme.domain.util.FixedPostgreSQL82Dialect
@@ -51,7 +50,7 @@ liquibase:
     contexts: prod
 
 server:
-    port: 8080
+    port: ${PORT}
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
@@ -61,7 +60,7 @@ server:
 # JHipster specific properties
 # ===================================================================
 
-jhipster:
+feedme:
     http:
         cache: # Used by the CachingHttpHeadersFilter
             timeToLiveInDays: 1461

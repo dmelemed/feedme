@@ -4,6 +4,8 @@ import com.codahale.metrics.annotation.Timed;
 import com.feedme.security.jwt.JWTConfigurer;
 import com.feedme.security.jwt.TokenProvider;
 import com.feedme.web.rest.vm.LoginVM;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,6 +27,8 @@ import java.util.Collections;
 @RequestMapping("/api")
 public class UserJWTController {
 
+    Logger log = LoggerFactory.getLogger(UserJWTController.class);
+
     @Inject
     private TokenProvider tokenProvider;
 
@@ -39,13 +43,19 @@ public class UserJWTController {
             new UsernamePasswordAuthenticationToken(loginVM.getUsername(), loginVM.getPassword());
 
         try {
+            log.debug("Pre A {}", authenticationToken);
             Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
+            log.debug("A {}", authentication);
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            log.debug("B");
+
             boolean rememberMe = (loginVM.isRememberMe() == null) ? false : loginVM.isRememberMe();
             String jwt = tokenProvider.createToken(authentication, rememberMe);
+            log.debug("C {}", jwt);
             response.addHeader(JWTConfigurer.AUTHORIZATION_HEADER, "Bearer " + jwt);
             return ResponseEntity.ok(new JWTToken(jwt));
         } catch (AuthenticationException exception) {
+            log.error("Caught ex", exception);
             return new ResponseEntity<>(Collections.singletonMap("AuthenticationException",exception.getLocalizedMessage()), HttpStatus.UNAUTHORIZED);
         }
     }

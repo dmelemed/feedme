@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span>Recipe</span> {{vm.recipe.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{vm.recipe.name}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{vm.recipe.description}}</span>
+        </dd>
+        <dt><span>Ingredients</span></dt>
+        <dd>
+            <span>{{vm.recipe.ingredients}}</span>
+        </dd>
+        <dt><span>Categories</span></dt>
+        <dd>
+            <span>{{vm.recipe.categories}}</span>
+        </dd>
+        <dt><span>Source</span></dt>
+        <dd>
+            <span>{{vm.recipe.source}}</span>
+        </dd>
+        <dt><span>Url</span></dt>
+        <dd>
+            <span>{{vm.recipe.url}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="recipe-detail.edit({id:vm.recipe.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

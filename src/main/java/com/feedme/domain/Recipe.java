@@ -17,7 +17,7 @@ public class Recipe implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -37,7 +37,7 @@ public class Recipe implements Serializable {
     private String categories;
 
     @NotNull
-    @Column(name = "source", nullable = false)
+    @Column(name = "src", nullable = false)
     private String source;
 
     @NotNull

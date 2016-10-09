@@ -38,6 +38,7 @@ public class TokenProvider {
     public void init() {
         this.secretKey =
             feedMeProperties.getSecurity().getAuthentication().getJwt().getSecret();
+        log.debug("Init key to {}", this.secretKey);
 
         this.tokenValidityInSeconds =
             1000 * feedMeProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSeconds();
@@ -57,6 +58,7 @@ public class TokenProvider {
         } else {
             validity = new Date(now + this.tokenValidityInSeconds);
         }
+        log.debug("Creating w/ secret key {}", secretKey);
 
         return Jwts.builder()
             .setSubject(authentication.getName())
